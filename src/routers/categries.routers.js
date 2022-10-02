@@ -1,12 +1,12 @@
 import insertCategories from '../controllers/insertCategories.js';
 import nameValidation from '../middlewares/nameValidation.js';
-import listenCategori from '../controllers/listenCategori.js';
+import listsCategories from '../controllers/listsCategories.js';
 import express from 'express';
 
 
 const routCategori = express.Router();
 
-routCategori.get("/categories", listenCategori);
+routCategori.get("/categories", listsCategories);
 
 routCategori.post("/categories", nameValidation, insertCategories)
 
