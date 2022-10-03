@@ -1,23 +1,25 @@
+import getItem from "../suports/getItem.js";
 import connection from "../database/postgres.js"
 
 export default async function(req,res){
         let CustomerId = `customers."id" = rentals."customerId" `;
         let gameID=`games."id"`;
+        let offset= '';
         try {
 
-            console.log(req.query.customerId, req.query.gameId)
-
+            if (req.query.limit) offset+=` LIMIT ${req.query.limit}`;
+            if (req.query.offset) offset+=` OFFSET ${req.query.offset} ROWS`;
+            if(req.query.gameId) gameID =req.query.gameId;
+            
             if(req.query.customerId){ 
 
-                const {rows} = await connection.query(`SELECT * FROM rentals WHERE "customerId" = $1 ;`,[req.query.customerId] )
-                
+                const rows = await getItem("rentals",`"'customerId'"`,req.params.id,true)
+           
                 if(rows.length<=0) return res.send([]).status(200);
                 
                 CustomerId = ` customers."id" = ${req.query.customerId}`
             
             };
-            
-            if(req.query.gameId) gameID =req.query.gameId;
             
             const {rows} = await connection.query(`
                             SELECT rentals. *, 
@@ -31,7 +33,8 @@ export default async function(req,res){
                                 JOIN games 
                                     ON  rentals."gameId" = ${gameID} 
                                 JOIN categories 
-                                    ON categories."id" = games."categoryId";`)
+                                    ON categories."id" = games."categoryId"
+                                    ${offset};`)
 
                                     console.log(rows)
 

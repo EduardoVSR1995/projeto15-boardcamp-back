@@ -1,9 +1,12 @@
 import connection from "../database/postgres.js";
 
-export default async function(table){
+export default async function(table, offset,limit){
+  let value='';
   try {
-
-    const promis = await connection.query(`SELECT * FROM ${table}`)
+    if(limit)value+= `LIMIT ${limit}`
+    if(offset)value+= `OFFSET ${offset} ROWS`
+    
+    const promis = await connection.query(`SELECT * FROM ${table} ${value};`)
 
     return promis.rows;
     

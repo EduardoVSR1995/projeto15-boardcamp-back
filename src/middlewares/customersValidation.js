@@ -3,7 +3,6 @@ import validSchema from "../suports/validSchema.js";
 
 export default function(req, res, next){
     const date = /(\d{4})[-](\d{2})[-](\d{2})/.exec(req.body.birthday)
-    console.log(req.body.birthday)
 
     try {
 
