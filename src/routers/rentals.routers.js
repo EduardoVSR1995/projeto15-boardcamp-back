@@ -1,19 +1,20 @@
-import RentalsValidation from '../middlewares/rentalsValidation.js';
-import atualizeRentals from '../controllers/atualizeRentals.js';
+import rentalsValidation from '../middlewares/rentalsValidation.js';
+import finishRentals from '../controllers/finishRentals.js';
 import insertRentals from '../controllers/insertRentals.js';
-import listsRentals from '../controllers/listCustomer.js';
+import deleteRentals from '../controllers/deleteRentals.js';
+import listRentals from '../controllers/listRentals.js';
 import express from 'express';
 
 
 const routRentals = express.Router();
 
 
-routRentals.get("/rentals", listsRentals);
+routRentals.get("/rentals", listRentals);
 
-//routRentals.get("/rentals/:id", listsRentals);
+routRentals.delete("/rentals/:id", deleteRentals);
 
-//routRentals.put("/rentals/:id", RentalsValidation, atualizeRentals);
+routRentals.post("/rentals/:id/return", finishRentals);
 
-//routRentals.post("/rentals", RentalsValidation, insertRentals)
+routRentals.post("/rentals",rentalsValidation ,insertRentals)
 
 export default routRentals;

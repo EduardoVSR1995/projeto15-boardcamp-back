@@ -10,8 +10,7 @@ export default async function(req, res){
         res.sendStatus(200);
 
     } catch (error) {
-        console.log(error)
-        res.send(error).status(400)
+        res.sendStatus(400)
         
     }
     

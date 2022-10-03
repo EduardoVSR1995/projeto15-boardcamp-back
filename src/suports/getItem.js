@@ -5,12 +5,9 @@ export default async function(localItens , categori, iten){
 
         const promis = await connection.query(`SELECT * FROM ${localItens} WHERE ${categori} LIKE $1 ;`, [ `${iten}%` ] )
         
-        console.log(promis)
-
         return promis;
         
     } catch (error) {
-        console.log(error)
 
         return error;
     }

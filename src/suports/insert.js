@@ -6,7 +6,6 @@ export default async function (localItens , iten){
     for (let index = 0; index < iten.length; index++) {
         lock.push(`$${index+1}`)
     }
-    
     try {
         
         const promis = await connection.query(`INSERT INTO ${localItens} VALUES (${lock.toString()}) ;`, iten )
@@ -14,7 +13,6 @@ export default async function (localItens , iten){
         return promis
         
     } catch (error) {
-        console.log(error,'errou')
         return error;
     }
 }
