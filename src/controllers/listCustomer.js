@@ -24,7 +24,7 @@ export default async function(req, res ){
             return;
         };
 
-        const promis = await getList("customers", req.query.offset,req.query.limit )
+        const promis = await getList("customers", req.query.offset,req.query.limit,req.query.order )
 
         res.send(promis).status(200);
 
