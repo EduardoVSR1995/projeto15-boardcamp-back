@@ -4,6 +4,7 @@ import insert from "../suports/insert.js";
 
 export default async function(req, res){
     const name = req.body.name;
+    
     try {
 
         const verifi = await getItem('categories', 'name', `${name}` );

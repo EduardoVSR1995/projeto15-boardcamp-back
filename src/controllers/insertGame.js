@@ -12,7 +12,7 @@ export default async function(req, res){
 
         if(verifi.rows.length>0)return res.sendStatus(409);
 
-        await insert(`games (name, image, "stockTotal", "categoryId", "pricePerDay")`, [name, image,  stockTotal, categoryId,pricePerDay])
+        await insert(`games (name, image, "stockTotal", "categoryId", "pricePerDay")`, [name, image,  stockTotal, categoryId,pricePerDay*100])
 
         res.sendStatus(201);
 

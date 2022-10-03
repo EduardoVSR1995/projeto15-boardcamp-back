@@ -5,8 +5,6 @@ export default async function(req, res ){
 
         const list = await getsList('categories') 
 
-        console.log(list)
-
         res.send(list).status(200);
             
     } catch (error) {

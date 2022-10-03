@@ -4,7 +4,6 @@ import insert from "../suports/insert.js";
 export default async function(req, res){
     const {name, phone, cpf, birthday }= req.body;
   
-
     try {
 
         const verifi = await getItem('customers', 'cpf', `${cpf}` );
@@ -16,7 +15,6 @@ export default async function(req, res){
         res.sendStatus(201);
 
     } catch (error) {
-
         res.sendStatus(400)
     }
 
